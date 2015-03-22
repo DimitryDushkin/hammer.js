@@ -78,6 +78,13 @@ TouchAction.prototype = {
             return;
         }
 
+        // disable preventing of context menu to appear for long tap (press)
+        if (this.manager.options.doNotPreventPress &&
+            input.distance < 5 &&
+            input.pointers.length === 1) {
+            return;
+        }
+
         var actions = this.actions;
         var hasNone = inStr(actions, TOUCH_ACTION_NONE);
         var hasPanY = inStr(actions, TOUCH_ACTION_PAN_Y);
